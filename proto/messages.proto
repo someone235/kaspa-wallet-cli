@@ -670,7 +670,7 @@ message UTXOOfAddressChangedNotificationMessage{
 message UTXOVerboseData{
   uint64 amount = 1;
   bytes scriptPubKey = 2;
-  uint64 blockBlueScore = 3;
+  uint64 blockDaaScore = 3;
   bool isCoinbase = 4;
 }
 

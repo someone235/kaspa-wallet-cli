@@ -278,7 +278,7 @@ class KaspaWalletCli {
 							v.forEach(entry=>{
 								console.log("  transactionId:", `${entry.transactionId} #${entry.index}`.green);
 								console.log("  scriptPublicKey:", entry.scriptPublicKey.scriptPublicKey, "version:", entry.scriptPublicKey.version);
-								console.log("  blockBlueScore:", entry.blockBlueScore.cyan,"isCoinbase:", entry.isCoinbase);
+								console.log("  blockDaaScore:", entry.blockDaaScore.cyan,"isCoinbase:", entry.isCoinbase);
 								console.log("  amount:", this.KAS(entry.amount).cyan,'KAS');
 								console.log(``);
 							})	
@@ -441,7 +441,7 @@ class KaspaWalletCli {
 					log.warn('Historical transaction information will be available in the next release');
 					Object.entries(wallet.utxoSet.utxoStorage).forEach(([address, UTXOs])=>{
 						console.log(`${address}:`);
-						UTXOs.sort((a,b) => { return a.blockBlueScore - b.blockBlueScore; });
+						UTXOs.sort((a,b) => { return a.blockDaaScore - b.blockDaaScore; });
 						let width = 0;
 						UTXOs.forEach((utxo) => {
 							let kas = `${this.KAS(utxo.amount)}`;
@@ -449,7 +449,7 @@ class KaspaWalletCli {
 								width = kas.length;
 						})
 						UTXOs.forEach((utxo) => {
-							console.log(` +${this.KAS(utxo.amount, width+1)}`,`KAS`,`txid:`, `${utxo.transactionId} #${utxo.index}`.green,'Blue Score:', utxo.blockBlueScore.cyan);
+							console.log(` +${this.KAS(utxo.amount, width+1)}`,`KAS`,`txid:`, `${utxo.transactionId} #${utxo.index}`.green,'Blue Score:', utxo.blockDaaScore.cyan);
 						})
 					})
 					this.rpc.disconnect();
